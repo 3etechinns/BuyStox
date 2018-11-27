@@ -9,14 +9,6 @@ const Portfolio = db.define('portfolio', {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false
-  },
-  price: {
-    type: Sequelize.FLOAT,
-    allowNull: false
-  },
-  total: {
-    type: Sequelize.FLOAT,
-    allowNull: false
   }
 })
 

@@ -15,3 +15,16 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:id/portfolio', async (req, res, next) => {
+  try {
+    const portfolio = await Portfolio.findAll({
+      where: {
+        userId: req.params.id
+      }
+    })
+    res.json(portfolio)
+  } catch (err) {
+    next(err)
+  }
+})

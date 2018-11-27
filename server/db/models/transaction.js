@@ -13,10 +13,6 @@ const Transaction = db.define('transaction', {
   price: {
     type: Sequelize.FLOAT,
     allowNull: false
-  },
-  total: {
-    type: Sequelize.FLOAT,
-    allowNull: false
   }
 })
 
