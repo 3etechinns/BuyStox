@@ -26,6 +26,10 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  accountBalance: {
+    type: Sequelize.FLOAT,
+    defaultValue: 5000.0
   }
 })
 
