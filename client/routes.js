@@ -7,7 +7,8 @@ import {
   Signup,
   UserHome,
   PortfolioPage,
-  Transactions
+  Transactions,
+  TradeForm
 } from './components'
 import {me} from './store'
 
@@ -33,6 +34,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route path="/portfolio" component={PortfolioPage} />
             <Route path="/transactions" component={Transactions} />
+            <Route path="/buy+sell" component={TradeForm} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

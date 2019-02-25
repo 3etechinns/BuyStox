@@ -16,9 +16,10 @@ const getPortfolio = (currentStocks, stockInfo) => ({
   stockInfo
 })
 
-const getPastTransactions = pastTransactions => ({
+const getPastTransactions = (pastTransactions, stockInfo) => ({
   type: GET_PAST_TRANSACTIONS,
-  pastTransactions
+  pastTransactions,
+  stockInfo
 })
 
 /**
@@ -43,7 +44,12 @@ export const fetchingPastTransactions = userId => async dispatch => {
   try {
     const res = await axios.get(`/api/users/${userId}/transactions`)
     const transactions = res.data
-    dispatch(getPastTransactions(transactions))
+
+    const tickers = transactions.map(elem => elem.stock)
+    const {data} = await axios.get(
+      `https://api.iextrading.com/1.0/stock/market/batch?symbols=${tickers}&types=quote`
+    )
+    dispatch(getPastTransactions(transactions, data))
   } catch (err) {
     console.err(err)
   }
@@ -72,7 +78,8 @@ export default function(state = defaultPortfolio, action) {
     case GET_PAST_TRANSACTIONS:
       return {
         ...defaultPortfolio,
-        pastTransactions: action.pastTransactions
+        pastTransactions: action.pastTransactions,
+        stockInfo: action.stockInfo
       }
     default:
       return state

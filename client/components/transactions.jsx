@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchingPastTransactions} from '../store'
+import StockTable from './stockTable'
 
 /**
  * COMPONENT
@@ -14,11 +15,23 @@ class Transactions extends Component {
   }
 
   render() {
-    const {transactions} = this.props
-    console.log('TRANSACTIONS: ', transactions)
+    const {transactions, stockInfo} = this.props
+
     return (
       <div>
         <h3>Past Transactions</h3>
+        <StockTable
+          headerArr={[
+            'Stock',
+            'Name',
+            'Qty',
+            'Price',
+            'Total',
+            'Transaction Type'
+          ]}
+          stockDataArr={transactions}
+          stockInfo={stockInfo}
+        />
       </div>
     )
   }
@@ -30,7 +43,8 @@ class Transactions extends Component {
 const mapState = state => {
   return {
     user: state.user,
-    transactions: state.portfolio.pastTransactions
+    transactions: state.portfolio.pastTransactions,
+    stockInfo: state.portfolio.stockInfo
   }
 }
 

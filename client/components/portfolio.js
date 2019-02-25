@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchingPortfolio} from '../store'
+import StockTable from './stockTable'
 
 /**
  * COMPONENT
@@ -19,29 +20,12 @@ class PortfolioPage extends Component {
     return (
       <div>
         <h3>Portfolio</h3>
-        <table>
-          <tbody>
-            <tr>
-              <th>Stock</th>
-              <th>Qty</th>
-              <th>Price</th>
-              <th>Total</th>
-            </tr>
-            {currentStocks.length &&
-              currentStocks.map(item => {
-                return (
-                  <tr key={item.id}>
-                    <td>{item.stock}</td>
-                    <td>{item.quantity}</td>
-                    <td>{stockInfo[item.stock].quote.latestPrice}</td>
-                    <td>
-                      {item.quantity * stockInfo[item.stock].quote.latestPrice}
-                    </td>
-                  </tr>
-                )
-              })}
-          </tbody>
-        </table>
+        <StockTable
+          headerArr={['Stock', 'Name', 'Qty', 'Price', 'Total']}
+          stockDataArr={currentStocks}
+          stockInfo={stockInfo}
+          type="current"
+        />
       </div>
     )
   }
