@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {User, Portfolio, Transaction} = require('../db/models')
+const axios = require('axios')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
