@@ -13,6 +13,10 @@ const Transaction = db.define('transaction', {
   price: {
     type: Sequelize.FLOAT,
     allowNull: false
+  },
+  tradeType: {
+    type: Sequelize.ENUM('bought', 'sold'),
+    allowNull: false
   }
 })
 

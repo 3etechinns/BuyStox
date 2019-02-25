@@ -5,6 +5,7 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_PORTFOLIO = 'GET_PORTFOLIO'
+const GET_PAST_TRANSACTIONS = 'GET_PAST_TRANSACTIONS'
 
 /**
  * ACTION CREATORS
@@ -13,6 +14,11 @@ const getPortfolio = (currentStocks, stockInfo) => ({
   type: GET_PORTFOLIO,
   currentStocks,
   stockInfo
+})
+
+const getPastTransactions = pastTransactions => ({
+  type: GET_PAST_TRANSACTIONS,
+  pastTransactions
 })
 
 /**
@@ -33,10 +39,24 @@ export const fetchingPortfolio = userId => async dispatch => {
   }
 }
 
+export const fetchingPastTransactions = userId => async dispatch => {
+  try {
+    const res = await axios.get(`/api/users/${userId}/transactions`)
+    const transactions = res.data
+    dispatch(getPastTransactions(transactions))
+  } catch (err) {
+    console.err(err)
+  }
+}
+
 /**
  * INITIAL STATE
  */
-const defaultPortfolio = {currentStocks: [], stockInfo: {}}
+const defaultPortfolio = {
+  currentStocks: [],
+  stockInfo: {},
+  pastTransactions: []
+}
 
 /**
  * REDUCER
@@ -48,6 +68,11 @@ export default function(state = defaultPortfolio, action) {
         ...defaultPortfolio,
         currentStocks: action.currentStocks,
         stockInfo: action.stockInfo
+      }
+    case GET_PAST_TRANSACTIONS:
+      return {
+        ...defaultPortfolio,
+        pastTransactions: action.pastTransactions
       }
     default:
       return state

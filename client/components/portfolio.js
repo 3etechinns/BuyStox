@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchingPortfolio, fetchingLatestStockInfo} from '../store'
+import {fetchingPortfolio} from '../store'
 
 /**
  * COMPONENT

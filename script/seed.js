@@ -14,29 +14,59 @@ async function seed() {
   ])
 
   const portfolio = await Promise.all([
-    Portfolio.create({stock: 'A', quantity: '1', userId: '1'}),
+    Portfolio.create({stock: 'AA', quantity: '1', userId: '1'}),
     Portfolio.create({stock: 'AA', quantity: '2', userId: '2'}),
-    Portfolio.create({stock: 'AA', quantity: '2', userId: '3'})
+    Portfolio.create({stock: 'AA', quantity: '2', userId: '3'}),
+    Portfolio.create({stock: 'BBF', quantity: '1', userId: '1'}),
+    Portfolio.create({stock: 'BBF', quantity: '2', userId: '2'}),
+    Portfolio.create({stock: 'BBF', quantity: '2', userId: '3'}),
+    Portfolio.create({stock: 'A', quantity: '1', userId: '1'}),
+    Portfolio.create({stock: 'A', quantity: '2', userId: '2'}),
+    Portfolio.create({stock: 'A', quantity: '2', userId: '3'})
   ])
 
   const transactions = await Promise.all([
     Transaction.create({
+      stock: 'BBGI',
+      quantity: '1',
+      price: '10.00',
+      userId: '1',
+      tradeType: 'bought'
+    }),
+    Transaction.create({
+      stock: 'BBGI',
+      quantity: '2',
+      price: '10.00',
+      userId: '2',
+      tradeType: 'bought'
+    }),
+    Transaction.create({
+      stock: 'BBF',
+      quantity: '2',
+      price: '10.00',
+      userId: '3',
+      tradeType: 'bought'
+    }),
+    Transaction.create({
       stock: 'BBF',
       quantity: '1',
       price: '10.00',
-      userId: '1'
+      userId: '1',
+      tradeType: 'sold'
     }),
     Transaction.create({
       stock: 'BBGI',
       quantity: '2',
       price: '10.00',
-      userId: '2'
+      userId: '2',
+      tradeType: 'sold'
     }),
     Transaction.create({
       stock: 'BBGI',
       quantity: '2',
       price: '10.00',
-      userId: '3'
+      userId: '3',
+      tradeType: 'sold'
     })
   ])
 
