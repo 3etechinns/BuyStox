@@ -42,12 +42,3 @@ router.get('/:id/transactions', async (req, res, next) => {
     next(err)
   }
 })
-
-router.get('/:id/account', async (req, res, next) => {
-  try {
-    const user = await User.findById(req.params.id)
-    res.json(user.accountBalance)
-  } catch (err) {
-    next(err)
-  }
-})

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchingPortfolio} from '../store'
 import StockTable from './stockTable'
+import TradeForm from './tradeform'
 
 /**
  * COMPONENT
@@ -26,6 +27,7 @@ class PortfolioPage extends Component {
           stockInfo={stockInfo}
           type="current"
         />
+        <TradeForm />
       </div>
     )
   }
